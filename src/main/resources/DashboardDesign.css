@@ -1,0 +1,196 @@
+
+
+.top-form{
+    -fx-background-color: #fff;
+    -fx-border-color:#000;
+    -fx-border-width:.4px .4px .2px .4px;
+}
+
+.main-top-form{
+    -fx-background-color: #ddd;
+    -fx-border-color:#000;
+    -fx-border-width: 0px 0px .4px 0px;
+}
+
+.navigation-form{
+    -fx-background-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+}
+
+.navigation-button{
+    -fx-background-color: transparent;
+    -fx-cursor:hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-alignment: CENTER_LEFT;
+}
+
+.logout-button{
+    -fx-background-color: #6a5fff;
+    -fx-background-radius:20px;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover{
+    -fx-background-color: #8c84ff;
+}
+
+.white-background{
+    -fx-background-color: #fff;
+    -fx-background-radius: 10px;
+}
+
+.shadow{
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.4), 4,0,0,0);
+}
+
+.card{
+    -fx-background-color: linear-gradient(to right, #444857, #537e90);
+    -fx-background-radius: 5px;
+}
+
+.close-tab{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.close-tab:hover{
+    -fx-background-color: #e03f5a;
+}
+
+.minimize-tab{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.minimize-tab:hover{
+    -fx-background-color: #ddd;
+}
+
+.textfield{
+    -fx-background-color: #fff;
+    -fx-border-color: linear-gradient(to right, #444857, #537e90);
+    -fx-border-width: 0px 0px .8px 0px;
+    -fx-font-size: 13px;
+    -fx-font-family: "Tahoma";
+}
+
+.textfield:focused{
+    -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-border-width:0px 0px 1.5px 0px ;
+}
+
+.combo-box{
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+    -fx-border-color: linear-gradient(to right, #444857, #537e90);
+    -fx-border-width: .8px;
+    -fx-border-radius: .5px;
+    -fx-font-size: 13px;
+    -fx-font-family: "Tahoma";
+}
+
+.combo-box:focused{
+    -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-border-width:1.5px ;
+}
+
+.add-button{
+    -fx-background-color: #3e608c;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Tahoma";
+}
+
+.add-button:hover{
+    -fx-background-color: #6597d3;
+}
+
+.update-button{
+    -fx-background-color: #754186;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Tahoma";
+}
+
+.update-button:hover{
+    -fx-background-color: #c375dd;
+}
+
+.delete-button{
+    -fx-background-color: #9d374a;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Tahoma";
+}
+
+.delete-button:hover{
+    -fx-background-color: #e4657e;
+}
+
+.clear-button{
+    -fx-background-color: #9d6245;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Tahoma";
+}
+
+.clear-button:hover{
+    -fx-background-color: #e49c7b;
+}
+
+.checkin-button{
+    -fx-background-color:linear-gradient(to bottom, #4885da, #224e75);
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Tahoma";
+}
+
+.checkin-button:hover{
+    -fx-background-color: #4885da;
+}
+
+.table-view{
+    -fx-background-color: transparent;
+    -fx-padding: 0px;
+    -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-border-radius: 8px;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-background-insets:0 0 0 0;
+}
+
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size:50px;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill: #fff;
+}
+
+.search-field{
+    -fx-background-color: transparent;
+    -fx-background-radius: 15px;
+    -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-border-radius:5px 15px 5px 15px;
+    -fx-border-width: 1px;
+    -fx-padding: 0px 0px 0px 15px;
+}
+
+.search-field:focused{
+    -fx-border-width: 1.8px;
+}
+
