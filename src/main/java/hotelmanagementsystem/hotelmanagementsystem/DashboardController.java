@@ -223,6 +223,8 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         availableRoomsRoomTypeComboBoxElements();
         availableRoomsRoomStatusComboBoxElements();
+
+        System.out.println("Database updated and bugs resolved.");
     }
 
 
