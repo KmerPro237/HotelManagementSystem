@@ -37,13 +37,15 @@ public class LoginPageController {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
+    private Connection connection;
+
     public void exit(){
         System.exit(0);
     }
 
     public void validateLogin(){
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection connection = databaseConnection.findConnection();
+        connection = databaseConnection.findConnection();
 
         String username = usernameTextfield.getText();
         username = username.trim();

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelmanagementsystem.hotelmanagementsystem.DashboardController">
    <children>
       <StackPane layoutX="162.0" layoutY="71.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -32,14 +32,20 @@
                                  <children>
                                     <Button layoutX="1048.0" layoutY="1.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="46.0" styleClass="close-tab" stylesheets="@../../DashboardDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <graphic>
-                                          <FontAwesomeIconView glyphName="CLOSE" text="" wrappingWidth="11.828597068786621" />
+                                          <FontAwesomeIconView fx:id="windowCloseButton" glyphName="CLOSE" text="" wrappingWidth="11.828597068786621" />
                                        </graphic>
                                     </Button>
                                     <Button layoutX="1008.0" layoutY="2.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="44.0" styleClass="minimize-tab" stylesheets="@../../DashboardDesign.css">
                                        <graphic>
-                                          <FontAwesomeIconView glyphName="MINUS" text="" />
+                                          <FontAwesomeIconView fx:id="windowMinimizeButton" glyphName="MINUS" text="" />
                                        </graphic>
                                     </Button>
+                                    <FontAwesomeIconView fill="#4951a4" glyphName="BUILDING" layoutX="5.0" layoutY="25.0" size="20" />
+                                    <Label layoutX="30.0" layoutY="9.0" prefHeight="18.0" prefWidth="169.0" text="Hotel Management System" textFill="#4951a4">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
                            </children>
@@ -56,28 +62,28 @@
                                           <Font name="Tahoma" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" layoutX="21.0" layoutY="163.0" prefHeight="26.0" prefWidth="166.0" text="Sos-Palace" textFill="WHITE">
+                                    <Label fx:id="dashboardUsername" alignment="CENTER" layoutX="21.0" layoutY="163.0" prefHeight="26.0" prefWidth="166.0" text="KmerPro237" textFill="WHITE">
                                        <font>
                                           <Font name="Arial Bold" size="22.0" />
                                        </font>
                                     </Label>
                                     <Line endX="73.09999084472656" endY="1.52587890625E-5" layoutX="113.0" layoutY="204.0" startX="-91.40000915527344" startY="1.52587890625E-5" stroke="WHITE" />
-                                    <Button layoutX="21.0" layoutY="226.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" styleClass="navigation-button" stylesheets="@../../DashboardDesign.css" text="Dashboard">
+                                    <Button fx:id="dashboardDashboardButton" layoutX="21.0" layoutY="226.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" styleClass="navigation-button" stylesheets="@../../DashboardDesign.css" text="Dashboard">
                                        <graphic>
                                           <FontAwesomeIconView fill="#fcfcfc" glyphName="DASHBOARD" />
                                        </graphic>
                                     </Button>
-                                    <Button layoutX="21.0" layoutY="256.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" styleClass="navigation-button" stylesheets="@../../DashboardDesign.css" text="Available Rooms">
+                                    <Button fx:id="dashboardAvailableRoomsButton" layoutX="21.0" layoutY="256.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="165.0" styleClass="navigation-button" stylesheets="@../../DashboardDesign.css" text="Available Rooms">
                                        <graphic>
                                           <FontAwesomeIconView fill="WHITE" glyphName="CHECK_CIRCLE" />
                                        </graphic>
                                     </Button>
-                                    <Button layoutX="21.0" layoutY="286.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" styleClass="navigation-button" stylesheets="@../../DashboardDesign.css" text="Customers">
+                                    <Button fx:id="dashboardCustomersButton" layoutX="21.0" layoutY="286.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" styleClass="navigation-button" stylesheets="@../../DashboardDesign.css" text="Customers">
                                        <graphic>
                                           <FontAwesomeIconView fill="WHITE" glyphName="USERS" />
                                        </graphic>
                                     </Button>
-                                    <Button layoutX="21.0" layoutY="505.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="logout-button" stylesheets="@../../DashboardDesign.css">
+                                    <Button fx:id="dashboardSignoutButton" layoutX="21.0" layoutY="505.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="logout-button" stylesheets="@../../DashboardDesign.css">
                                        <graphic>
                                           <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="20" />
                                        </graphic>
@@ -95,7 +101,7 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <AnchorPane layoutX="102.0" layoutY="126.0" prefHeight="544.8" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="dashboardForm" layoutX="102.0" layoutY="126.0" prefHeight="544.8" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="8.0" layoutY="14.0" prefHeight="176.0" prefWidth="882.0" stylesheets="@../../DashboardDesign.css">
                                        <styleClass>
@@ -111,7 +117,7 @@
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="228.0" layoutY="37.0" text="0" textFill="WHITE">
+                                                <Label fx:id="dashboardTodaysBookingsLabel" alignment="BOTTOM_RIGHT" layoutX="149.0" layoutY="37.0" prefHeight="30.0" prefWidth="105.0" text="0" textFill="WHITE">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -126,7 +132,7 @@
                                                    </font>
                                                 </Label>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="MONEY" layoutX="14.0" layoutY="70.0" size="50" />
-                                                <Label layoutX="214.0" layoutY="37.0" text="0.0 €" textFill="WHITE">
+                                                <Label fx:id="dashboardTodaysIncomeLabel" alignment="BOTTOM_RIGHT" layoutX="144.0" layoutY="37.0" prefHeight="30.0" prefWidth="112.0" text="0.0 €" textFill="WHITE">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -141,7 +147,7 @@
                                                    </font>
                                                 </Label>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="EURO" layoutX="14.0" layoutY="68.0" size="50" />
-                                                <Label layoutX="213.0" layoutY="35.0" text="0.0 €" textFill="WHITE">
+                                                <Label fx:id="dashboardTotalIncomeLabel" alignment="BOTTOM_RIGHT" layoutX="131.0" layoutY="35.0" prefHeight="30.0" prefWidth="124.0" text="0.0 €" textFill="WHITE">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -156,7 +162,7 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <AreaChart layoutX="29.0" layoutY="6.0" prefHeight="308.0" prefWidth="810.0" title="Income Data" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="6.0">
+                                          <AreaChart fx:id="dashboardAreaChart" layoutX="29.0" layoutY="6.0" prefHeight="308.0" prefWidth="810.0" title="Income Data" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="6.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
@@ -168,7 +174,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="154.0" layoutY="72.0" prefHeight="544.8" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="availableRoomsForm" layoutX="154.0" layoutY="72.0" prefHeight="544.8" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="518.0" prefWidth="262.0" stylesheets="@../../DashboardDesign.css">
                                        <styleClass>
@@ -176,19 +182,19 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TextField layoutX="94.0" layoutY="38.0" prefHeight="26.0" prefWidth="137.0" AnchorPane.rightAnchor="30.799999999999983" />
+                                          <TextField fx:id="availableRoomsRoomNumberLabel" layoutX="94.0" layoutY="38.0" prefHeight="26.0" prefWidth="137.0" AnchorPane.rightAnchor="30.799999999999983" />
                                           <Label layoutX="42.0" layoutY="42.0" text="Room #:" AnchorPane.leftAnchor="42.0" />
-                                          <ComboBox layoutX="93.0" layoutY="74.0" prefHeight="26.0" prefWidth="137.0" styleClass="combo-box" stylesheets="@../../DashboardDesign.css" AnchorPane.rightAnchor="31.0" />
+                                          <ComboBox fx:id="availableRoomsRoomTypeComboBox" layoutX="93.0" layoutY="74.0" onAction="#availableRoomsRoomTypeComboBoxElements" prefHeight="26.0" prefWidth="137.0" promptText="Choose" styleClass="combo-box" stylesheets="@../../DashboardDesign.css" AnchorPane.rightAnchor="31.0" />
                                           <Label layoutX="26.0" layoutY="78.0" prefHeight="18.0" prefWidth="66.0" text="Room Type:" AnchorPane.leftAnchor="25.0" />
-                                          <ComboBox layoutX="93.0" layoutY="109.0" prefHeight="26.0" prefWidth="137.0" styleClass="combo-box" stylesheets="@../../DashboardDesign.css" AnchorPane.rightAnchor="31.0" />
+                                          <ComboBox fx:id="availableRoomsRoomStatusComboBox" layoutX="93.0" layoutY="109.0" onAction="#availableRoomsRoomStatusComboBoxElements" prefHeight="26.0" prefWidth="137.0" promptText="Choose" styleClass="combo-box" stylesheets="@../../DashboardDesign.css" AnchorPane.rightAnchor="31.0" />
                                           <Label layoutX="53.0" layoutY="113.0" prefHeight="18.0" prefWidth="38.0" text="Status:" />
-                                          <TextField layoutX="94.0" layoutY="145.0" prefHeight="26.0" prefWidth="137.0" />
+                                          <TextField fx:id="availableRoomsPriceLabel" layoutX="94.0" layoutY="145.0" prefHeight="26.0" prefWidth="137.0" />
                                           <Label layoutX="41.0" layoutY="149.0" prefHeight="18.0" prefWidth="50.0" text="Price (€):" AnchorPane.leftAnchor="43.0" />
-                                          <Button layoutX="27.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Add" />
-                                          <Button layoutX="156.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Update" />
-                                          <Button layoutX="29.0" layoutY="301.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Clear" />
-                                          <Button layoutX="158.0" layoutY="301.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Delete" />
-                                          <Button layoutX="80.0" layoutY="392.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="105.0" text="Check-in" />
+                                          <Button fx:id="availableRoomsAddButton" layoutX="27.0" layoutY="229.0" mnemonicParsing="false" onAction="#addRoomToDatabase" prefHeight="30.0" prefWidth="75.0" styleClass="add-button" stylesheets="@../../DashboardDesign.css" text="Add" />
+                                          <Button fx:id="availableRoomsUpdateButton" layoutX="156.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="update-button" stylesheets="@../../DashboardDesign.css" text="Update" />
+                                          <Button fx:id="availableRoomsClearButton" layoutX="29.0" layoutY="301.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="clear-button" stylesheets="@../../DashboardDesign.css" text="Clear" />
+                                          <Button fx:id="availableRoomsDeleteButton" layoutX="158.0" layoutY="301.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="delete-button" stylesheets="@../../DashboardDesign.css" text="Delete" />
+                                          <Button fx:id="availableRoomsCheckinButton" layoutX="71.0" layoutY="392.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="checkin-button" stylesheets="@../../DashboardDesign.css" text="Check-in" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="290.0" layoutY="15.0" prefHeight="518.0" prefWidth="595.0" stylesheets="@../../DashboardDesign.css">
@@ -197,15 +203,15 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TableView layoutX="8.0" layoutY="53.0" prefHeight="458.0" prefWidth="578.0">
+                                          <TableView fx:id="availableRoomsTableView" layoutX="8.0" layoutY="53.0" prefHeight="458.0" prefWidth="578.0">
                                             <columns>
-                                              <TableColumn prefWidth="124.79998779296875" text="Room #" />
-                                              <TableColumn prefWidth="144.0" text="Type" />
-                                                <TableColumn prefWidth="176.00006103515625" text="Status" />
-                                                <TableColumn prefWidth="138.40020751953125" text="Price (€)" />
+                                              <TableColumn fx:id="availableRoomsColumnRoomNumber" prefWidth="132.79995727539062" text="Room #" />
+                                              <TableColumn fx:id="availableRoomsColumnRoomType" prefWidth="150.4000244140625" text="Type" />
+                                                <TableColumn fx:id="availableRoomsColumnStatus" prefWidth="162.40008544921875" text="Status" />
+                                                <TableColumn fx:id="availableRoomsColumnPrice" prefWidth="138.40020751953125" text="Price (€)" />
                                             </columns>
                                           </TableView>
-                                          <TextField layoutX="7.0" layoutY="14.0" prefHeight="26.0" prefWidth="258.0" promptText="Search">
+                                          <TextField fx:id="availableRoomsSearchField" layoutX="7.0" layoutY="14.0" prefHeight="26.0" prefWidth="258.0" promptText="Search" styleClass="search-field" stylesheets="@../../DashboardDesign.css">
                                              <font>
                                                 <Font name="System Italic" size="12.0" />
                                              </font>
@@ -213,6 +219,33 @@
                                           <FontAwesomeIconView fill="#dddddd" glyphName="SEARCH" layoutX="244.0" layoutY="31.0" size="15" />
                                        </children>
                                     </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="customersForm" layoutX="97.0" layoutY="72.0" prefHeight="544.8" prefWidth="900.0" stylesheets="@../../DashboardDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane layoutX="6.0" layoutY="8.0" prefHeight="532.0" prefWidth="890.0" stylesheets="@../../DashboardDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-background" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <TableView fx:id="customersTableView" layoutX="18.0" layoutY="63.0" prefHeight="471.0" prefWidth="874.0" stylesheets="@../../DashboardDesign.css">
+                                       <columns>
+                                          <TableColumn fx:id="customersColumnCustomerNumber" prefWidth="88.79998779296875" text="Customer #" />
+                                          <TableColumn fx:id="customersColumnFirstName" prefWidth="140.0" text="First Name" />
+                                          <TableColumn fx:id="customersColumnLastName" prefWidth="150.39993286132812" text="Last Name" />
+                                          <TableColumn fx:id="customersColumnCustomerPhoneNumber" prefWidth="133.60003662109375" text="Phone #" />
+                                          <TableColumn fx:id="customersColumnTotalPayment" prefWidth="129.59991455078125" text="Total Payment" />
+                                          <TableColumn fx:id="customersColumnCheckedin" prefWidth="120.7999267578125" text="Checked-In" />
+                                          <TableColumn fx:id="customersColumnCheckedout" prefWidth="114.4000244140625" text="Checked-Out" />
+                                       </columns>
+                                    </TableView>
+                                    <TextField fx:id="customersSearchField" layoutX="22.0" layoutY="24.0" prefHeight="26.0" prefWidth="253.0" promptText="Search" styleClass="search-field" stylesheets="@../../DashboardDesign.css">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </TextField>
+                                    <FontAwesomeIconView fill="#dddddd" glyphName="SEARCH" layoutX="254.0" layoutY="41.0" size="15" />
                                  </children>
                               </AnchorPane>
                            </children>

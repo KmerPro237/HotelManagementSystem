@@ -1,6 +1,8 @@
 package hotelmanagementsystem.hotelmanagementsystem;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
@@ -12,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -137,9 +141,13 @@ public class DashboardController implements Initializable {
     private Statement statement;
     private ResultSet resultSet;
 
+    //Combobox Elements
+    private static ComboBoxesData comboBoxesData = new ComboBoxesData();
+
     public void addRoomToDatabase(){
         String sql = "insert into rooms(roomNumber, roomType, roomStatus, roomPrice) values(?,?,?,?)";
 
+        databaseConnection = new DatabaseConnection();
         connection = databaseConnection.findConnection();
 
         try{
@@ -181,8 +189,41 @@ public class DashboardController implements Initializable {
 
     }
 
+    public void availableRoomsRoomTypeComboBoxElements(){
+
+        String roomTypesArray[] = comboBoxesData.getRoomType();
+
+        List<String> roomTypesList = new ArrayList<>();
+
+        for(String roomType : roomTypesArray){
+            roomTypesList.add(roomType);
+        }
+
+        ObservableList roomTypeObservableList = FXCollections.observableArrayList(roomTypesList);
+        availableRoomsRoomTypeComboBox.setItems(roomTypeObservableList);
+
+    }
+
+    public void availableRoomsRoomStatusComboBoxElements(){
+        String roomStatusArray[] = comboBoxesData.getRoomStatus();
+
+        List<String> roomStatusList = new ArrayList<>();
+
+        for(String roomStatus : roomStatusArray){
+            roomStatusList.add(roomStatus);
+        }
+
+        ObservableList roomStatusObservableList = FXCollections.observableArrayList(roomStatusList);
+        availableRoomsRoomStatusComboBox.setItems(roomStatusObservableList);
+    }
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Continuation");
+        availableRoomsRoomTypeComboBoxElements();
+        availableRoomsRoomStatusComboBoxElements();
     }
+
+
 }
