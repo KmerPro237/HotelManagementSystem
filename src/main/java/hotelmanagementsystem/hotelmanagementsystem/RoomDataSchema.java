@@ -1,12 +1,12 @@
 package hotelmanagementsystem.hotelmanagementsystem;
 
-public class roomData {
+public class RoomDataSchema {
     private Integer roomNumber;
     private String roomType;
     private String status;
     private Double price;
 
-    public roomData(Integer roomNumber, String roomType, String status, Double price){
+    public RoomDataSchema(Integer roomNumber, String roomType, String status, Double price){
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.status = status;

@@ -144,6 +144,9 @@ public class DashboardController implements Initializable {
     //Combobox Elements
     private static ComboBoxesData comboBoxesData = new ComboBoxesData();
 
+    /**
+     * Adds rooms into the Database
+     */
     public void addRoomToDatabase(){
         String sql = "insert into rooms(roomNumber, roomType, roomStatus, roomPrice) values(?,?,?,?)";
 
@@ -180,6 +183,9 @@ public class DashboardController implements Initializable {
                 alert.setContentText("Room successfully added!");
                 alert.showAndWait();
 
+                //Selected Data will be cleared after successfully adding a room
+                availableRoomsClearData();
+
             }
 
 
@@ -189,6 +195,9 @@ public class DashboardController implements Initializable {
 
     }
 
+    /**
+     * Enables the selection of elements a specific room type from the combo box
+     */
     public void availableRoomsRoomTypeComboBoxElements(){
 
         String roomTypesArray[] = comboBoxesData.getRoomType();
@@ -204,6 +213,9 @@ public class DashboardController implements Initializable {
 
     }
 
+    /**
+     * Enables the selection of elements a room status from the combo box
+     */
     public void availableRoomsRoomStatusComboBoxElements(){
         String roomStatusArray[] = comboBoxesData.getRoomStatus();
 
@@ -217,8 +229,22 @@ public class DashboardController implements Initializable {
         availableRoomsRoomStatusComboBox.setItems(roomStatusObservableList);
     }
 
+    /**
+     * Selected Data will be cleared after successfully adding a room
+     */
+    public void availableRoomsClearData(){
+        availableRoomsRoomNumberLabel.setText("");
+        availableRoomsRoomTypeComboBox.getSelectionModel().clearSelection();
+        availableRoomsRoomStatusComboBox.getSelectionModel().clearSelection();
+        availableRoomsPriceLabel.setText("");
+    }
 
 
+    /**
+     * Method which initializes all other Methods used in the Controller-Class
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         availableRoomsRoomTypeComboBoxElements();
