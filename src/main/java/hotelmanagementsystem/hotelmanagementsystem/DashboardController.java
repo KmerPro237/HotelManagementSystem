@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -30,16 +31,16 @@ public class DashboardController implements Initializable {
     private Button availableRoomsClearButton;
 
     @FXML
-    private TableColumn<?, ?> availableRoomsColumnPrice;
+    private TableColumn<RoomsData, String> availableRoomsColumnPrice;
 
     @FXML
-    private TableColumn<?, ?> availableRoomsColumnRoomNumber;
+    private TableColumn<RoomsData, String> availableRoomsColumnRoomNumber;
 
     @FXML
-    private TableColumn<?, ?> availableRoomsColumnRoomType;
+    private TableColumn<RoomsData, String> availableRoomsColumnRoomType;
 
     @FXML
-    private TableColumn<?, ?> availableRoomsColumnStatus;
+    private TableColumn<RoomsData, String> availableRoomsColumnStatus;
 
     @FXML
     private Button availableRoomsDeleteButton;
@@ -63,7 +64,7 @@ public class DashboardController implements Initializable {
     private TextField availableRoomsSearchField;
 
     @FXML
-    private TableView<?> availableRoomsTableView;
+    private TableView<RoomsData> availableRoomsTableView;
 
     @FXML
     private Button availableRoomsUpdateButton;
@@ -134,8 +135,11 @@ public class DashboardController implements Initializable {
     @FXML
     private FontAwesomeIconView windowMinimizeButton;
 
+    //Rooms' Data
+    private  ObservableList<RoomsData> contentsOfRoomDataList;
+
     //Database tools
-    private DatabaseConnection databaseConnection;
+    private DatabaseConnection databaseConnection = new DatabaseConnection();
     private Connection connection;
     private PreparedStatement preparedStatement;
     private Statement statement;
@@ -150,7 +154,7 @@ public class DashboardController implements Initializable {
     public void addRoomToDatabase(){
         String sql = "insert into rooms(roomNumber, roomType, roomStatus, roomPrice) values(?,?,?,?)";
 
-        databaseConnection = new DatabaseConnection();
+        //databaseConnection = new DatabaseConnection();
         connection = databaseConnection.findConnection();
 
         try{
@@ -183,6 +187,9 @@ public class DashboardController implements Initializable {
                 alert.setContentText("Room successfully added!");
                 alert.showAndWait();
 
+                //Updates data in the table view
+                availableRoomsUpdateDataAndPopulateTableView();
+
                 //Selected Data will be cleared after successfully adding a room
                 availableRoomsClearData();
 
@@ -193,6 +200,50 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public ObservableList<RoomsData> availableRoomsRoomDataList(){
+        ObservableList<RoomsData> roomDataList = FXCollections.observableArrayList();
+
+        String sqlQuery = "select * from rooms";
+
+        connection = databaseConnection.findConnection();
+
+        try{
+            RoomsData roomsData;
+
+            preparedStatement = connection.prepareStatement(sqlQuery);
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                roomsData = new RoomsData(resultSet.getInt("roomNumber"),
+                                                    resultSet.getString("roomType"),
+                                                    resultSet.getString("roomStatus"),
+                                                    resultSet.getDouble("roomPrice"));
+
+                roomDataList.add(roomsData);
+            }
+
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return roomDataList;
+    }
+
+    /**
+     * Updates data in the room tableview
+     */
+    public void availableRoomsUpdateDataAndPopulateTableView(){
+        contentsOfRoomDataList = availableRoomsRoomDataList();
+
+        availableRoomsColumnRoomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        availableRoomsColumnRoomType.setCellValueFactory(new PropertyValueFactory<>("roomType"));
+        availableRoomsColumnStatus.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
+        availableRoomsColumnPrice.setCellValueFactory(new PropertyValueFactory<>("roomPrice"));
+
+        availableRoomsTableView.setItems(contentsOfRoomDataList);
     }
 
     /**
@@ -241,7 +292,7 @@ public class DashboardController implements Initializable {
 
 
     /**
-     * Method which initializes all other Methods used in the Controller-Class
+     * Called to initialize a controller after its root element has been completely processed.
      * @param url
      * @param resourceBundle
      */
@@ -249,8 +300,8 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         availableRoomsRoomTypeComboBoxElements();
         availableRoomsRoomStatusComboBoxElements();
+        availableRoomsUpdateDataAndPopulateTableView();
 
-        System.out.println("Database updated and bugs resolved.");
     }
 
 
