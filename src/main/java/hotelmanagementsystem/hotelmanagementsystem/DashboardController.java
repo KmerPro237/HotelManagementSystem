@@ -4,12 +4,19 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -130,10 +137,13 @@ public class DashboardController implements Initializable {
     private Label dashboardUsername;
 
     @FXML
-    private FontAwesomeIconView windowCloseButton;
+    private Button windowCloseButton;
 
     @FXML
-    private FontAwesomeIconView windowMinimizeButton;
+    private AnchorPane windowMainForm;
+
+    @FXML
+    private Button windowMinimizeButton;
 
     //Rooms' Data
     private  ObservableList<RoomsData> contentsOfRoomDataList;
@@ -147,6 +157,10 @@ public class DashboardController implements Initializable {
 
     //Combobox Elements
     private static ComboBoxesData comboBoxesData = new ComboBoxesData();
+
+    //Mouse Event variables
+    private double x = 0;
+    private double y = 0;
 
     /**
      * Adds rooms into the Database
@@ -288,6 +302,42 @@ public class DashboardController implements Initializable {
         availableRoomsRoomTypeComboBox.getSelectionModel().clearSelection();
         availableRoomsRoomStatusComboBox.getSelectionModel().clearSelection();
         availableRoomsPriceLabel.setText("");
+    }
+
+    public void closeWindow(){
+        System.exit(0);
+    }
+
+    public void minimizeWindow(){
+        Stage stage = (Stage) windowMainForm.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    /**
+     * Signs the user our and redirects to the login page
+     */
+    public void logoutFromDashboard(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+
+            root.setOnMousePressed((MouseEvent mouseEvent) ->{
+                x = mouseEvent.getSceneX();
+                y = mouseEvent.getSceneY();
+            });
+
+            root.setOnMouseDragged((MouseEvent mouseEvent) ->{
+                stage.setX(mouseEvent.getScreenX() - x);
+                stage.setY(mouseEvent.getScreenY() - y);
+            });
+
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -17,8 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelmanagementsystem.hotelmanagementsystem.DashboardController">
+<AnchorPane fx:id="windowMainForm" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelmanagementsystem.hotelmanagementsystem.DashboardController">
    <children>
       <StackPane layoutX="162.0" layoutY="71.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,14 +29,14 @@
                            <children>
                               <AnchorPane layoutX="150.0" layoutY="-46.0" prefHeight="36.0" prefWidth="1100.0" styleClass="top-form" stylesheets="@../../DashboardDesign.css" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button layoutX="1048.0" layoutY="1.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="46.0" styleClass="close-tab" stylesheets="@../../DashboardDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                    <Button fx:id="windowCloseButton" layoutX="1048.0" layoutY="1.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="15.0" prefWidth="46.0" styleClass="close-tab" stylesheets="@../../DashboardDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                        <graphic>
-                                          <FontAwesomeIconView fx:id="windowCloseButton" glyphName="CLOSE" text="" wrappingWidth="11.828597068786621" />
+                                          <FontAwesomeIconView glyphName="CLOSE" text="" wrappingWidth="11.828597068786621" />
                                        </graphic>
                                     </Button>
-                                    <Button layoutX="1008.0" layoutY="2.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="44.0" styleClass="minimize-tab" stylesheets="@../../DashboardDesign.css">
+                                    <Button fx:id="windowMinimizeButton" layoutX="1008.0" layoutY="2.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="24.0" prefWidth="44.0" styleClass="minimize-tab" stylesheets="@../../DashboardDesign.css">
                                        <graphic>
-                                          <FontAwesomeIconView fx:id="windowMinimizeButton" glyphName="MINUS" text="" />
+                                          <FontAwesomeIconView glyphName="MINUS" text="" />
                                        </graphic>
                                     </Button>
                                     <FontAwesomeIconView fill="#4951a4" glyphName="BUILDING" layoutX="5.0" layoutY="25.0" size="20" />
@@ -83,7 +82,7 @@
                                           <FontAwesomeIconView fill="WHITE" glyphName="USERS" />
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="dashboardSignoutButton" layoutX="21.0" layoutY="505.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="logout-button" stylesheets="@../../DashboardDesign.css">
+                                    <Button fx:id="dashboardSignoutButton" layoutX="21.0" layoutY="505.0" mnemonicParsing="false" onAction="#logoutFromDashboard" prefHeight="28.0" prefWidth="28.0" styleClass="logout-button" stylesheets="@../../DashboardDesign.css">
                                        <graphic>
                                           <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="20" />
                                        </graphic>

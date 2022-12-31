@@ -28,16 +28,17 @@ public class HotelManagementSystem extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
 
-        Scene scene = new Scene(root, 690 , 500);
+        Scene scene = new Scene(root);
 
         root.setOnMouseClicked((MouseEvent mouseEvent) -> {
             x = mouseEvent.getSceneX();
             y = mouseEvent.getSceneY();
         });
 
-        root.setOnMouseDragged((MouseEvent mouseEvent) -> {
-            stage.setX(mouseEvent.getScreenX() -x);
-            stage.setY(mouseEvent.getSceneY() -y);
+
+        root.setOnMouseDragged((MouseEvent mouseEvent) ->{
+            stage.setX(mouseEvent.getScreenX() - x);
+            stage.setY(mouseEvent.getScreenY() - y);
 
             stage.setOpacity(.8);
         });

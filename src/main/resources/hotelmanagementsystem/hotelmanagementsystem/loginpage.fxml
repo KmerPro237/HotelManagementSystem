@@ -15,9 +15,9 @@
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="350.0" styleClass="left-form" stylesheets="@../../loginPageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label alignment="CENTER" layoutX="58.0" layoutY="271.0" prefHeight="18.0" prefWidth="234.0" text="Sos-Hotel Management System" textFill="#fffdfd">
+                  <Label alignment="CENTER" layoutX="58.0" layoutY="271.0" prefHeight="18.0" prefWidth="234.0" text="Hotel Management System" textFill="#fffdfd">
                      <font>
-                        <Font name="Tahoma" size="14.0" />
+                        <Font name="Tahoma Bold" size="16.0" />
                      </font>
                   </Label>
                   <FontAwesomeIconView fill="WHITE" glyphName="BUILDING" layoutX="115.0" layoutY="230.0" size="140" />
