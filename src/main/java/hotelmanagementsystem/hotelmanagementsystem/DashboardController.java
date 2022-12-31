@@ -1,6 +1,5 @@
 package hotelmanagementsystem.hotelmanagementsystem;
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -164,7 +162,8 @@ public class DashboardController implements Initializable {
     private double y = 0;
 
     /**
-     * Adds rooms into the Database
+     * Adds new rooms to the Database
+     * Verifies empty fields and checks duplicate room-entries
      */
     public void addRoomToDatabase(){
         String sql = "insert into rooms(roomNumber, roomType, roomStatus, roomPrice) values(?,?,?,?)";
@@ -203,13 +202,12 @@ public class DashboardController implements Initializable {
                 alert.showAndWait();
 
                 //Updates data in the table view
-                availableRoomsUpdateDataAndPopulateTableView();
+                availableRoomsShowDataAndPopulateTableView();
 
                 //Selected Data will be cleared after successfully adding a room
                 availableRoomsClearData();
 
             }
-
 
         }catch(Exception e){
             e.printStackTrace();
@@ -217,6 +215,10 @@ public class DashboardController implements Initializable {
 
     }
 
+    /**
+     * Creates a list of all data partaining to rooms
+     * @return returns these data in a list format
+     */
     public ObservableList<RoomsData> availableRoomsRoomDataList(){
         ObservableList<RoomsData> roomDataList = FXCollections.observableArrayList();
 
@@ -248,9 +250,10 @@ public class DashboardController implements Initializable {
     }
 
     /**
-     * Updates data in the room tableview
+     * Updates data in the room tableview and lets thr user see changes made
+     * Method also populates the tableview by making newly added data visible to the user
      */
-    public void availableRoomsUpdateDataAndPopulateTableView(){
+    public void availableRoomsShowDataAndPopulateTableView(){
         contentsOfRoomDataList = availableRoomsRoomDataList();
 
         availableRoomsColumnRoomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
@@ -262,7 +265,7 @@ public class DashboardController implements Initializable {
     }
 
     /**
-     * Enables the selection of elements a specific room type from the combo box
+     * Enables the user to select a specific room-type out of a miscellany of options
      */
     public void availableRoomsRoomTypeComboBoxElements(){
 
@@ -280,7 +283,7 @@ public class DashboardController implements Initializable {
     }
 
     /**
-     * Enables the selection of elements a room status from the combo box
+     * Enables the user to select a room's status out of a miscellany of options
      */
     public void availableRoomsRoomStatusComboBoxElements(){
         String roomStatusArray[] = comboBoxesData.getRoomStatus();
@@ -294,7 +297,7 @@ public class DashboardController implements Initializable {
         ObservableList roomStatusObservableList = FXCollections.observableArrayList(roomStatusList);
         availableRoomsRoomStatusComboBox.setItems(roomStatusObservableList);
     }
-
+        //Dashboard setting room modification buttons
     /**
      * Selected Data will be cleared after successfully adding a room
      */
@@ -305,10 +308,61 @@ public class DashboardController implements Initializable {
         availableRoomsPriceLabel.setText("");
     }
 
+    /**
+     * Method enables to update the database by using sql Queries and aggregates
+     * Existing data will be modified, thereby enabling the user to undertake minor changes on room information
+     * Updates will also be shown in the tableview
+     */
+    public void availableRoomsUpdateData(){
+        String newRoomType = (String) availableRoomsRoomTypeComboBox.getSelectionModel().getSelectedItem();
+        String newRoomStatus = (String) availableRoomsRoomStatusComboBox.getSelectionModel().getSelectedItem();
+        String newRoomPrice = availableRoomsPriceLabel.getText();
+        String newRoomNumber = availableRoomsRoomNumberLabel.getText();
+
+        String sqlUpdateQuery = "update rooms set roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"', roomNumber = '"+newRoomNumber+"'";
+
+        connection = databaseConnection.findConnection();
+
+        try{
+
+            Alert alert;
+
+            if(newRoomNumber.isEmpty()||newRoomType.isEmpty()||newRoomStatus.isEmpty()||newRoomPrice.isEmpty()){
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please select the data from the table first");
+                alert.showAndWait();
+            } else {
+
+                preparedStatement = connection.prepareStatement(sqlUpdateQuery);
+                preparedStatement.executeUpdate();
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Room data successfully updated!");
+                alert.showAndWait();
+
+                availableRoomsShowDataAndPopulateTableView();
+                availableRoomsClearData();
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Closes the dashboard
+     */
     public void closeWindow(){
         System.exit(0);
     }
 
+    /**
+     * Minimizes the dashboard window
+     */
     public void minimizeWindow(){
         Stage stage = (Stage) windowMainForm.getScene().getWindow();
         stage.setIconified(true);
@@ -324,7 +378,7 @@ public class DashboardController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to logout?");
+            alert.setContentText("Are you sure you want to sign out?");
 
             Optional<ButtonType> optionalButtonType = alert.showAndWait();
 
@@ -359,6 +413,22 @@ public class DashboardController implements Initializable {
         }
     }
 
+    /**
+     * Enables the user see any changes undertaken in the tableview, like
+     * rooms added or rooms deleted or even minor modifications
+     */
+    public void availableRoomsSelectDataFromTableView(){
+        RoomsData roomsData = availableRoomsTableView.getSelectionModel().getSelectedItem();
+        int number = availableRoomsTableView.getSelectionModel().getSelectedIndex();
+
+        if((number - 1) < -1){
+            return;
+        }
+
+        availableRoomsRoomNumberLabel.setText(String.valueOf(roomsData.getRoomNumber()));
+        availableRoomsPriceLabel.setText(String.valueOf(roomsData.getRoomPrice()));
+    }
+
 
     /**
      * Called to initialize a controller after its root element has been completely processed.
@@ -369,7 +439,7 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         availableRoomsRoomTypeComboBoxElements();
         availableRoomsRoomStatusComboBoxElements();
-        availableRoomsUpdateDataAndPopulateTableView();
+        availableRoomsShowDataAndPopulateTableView();
 
     }
 
