@@ -24,6 +24,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -315,26 +316,44 @@ public class DashboardController implements Initializable {
 
     /**
      * Signs the user our and redirects to the login page
+     * Also asks the user's confirmation before logging out
+     * Also hides the dashboard after confirmation of signing out
      */
     public void logoutFromDashboard(){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to logout?");
 
-            root.setOnMousePressed((MouseEvent mouseEvent) ->{
-                x = mouseEvent.getSceneX();
-                y = mouseEvent.getSceneY();
-            });
+            Optional<ButtonType> optionalButtonType = alert.showAndWait();
 
-            root.setOnMouseDragged((MouseEvent mouseEvent) ->{
-                stage.setX(mouseEvent.getScreenX() - x);
-                stage.setY(mouseEvent.getScreenY() - y);
-            });
+            if(optionalButtonType.get().equals(ButtonType.OK)) {
 
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
+                Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
+
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+
+                root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                    x = mouseEvent.getSceneX();
+                    y = mouseEvent.getSceneY();
+                });
+
+                root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                    stage.setX(mouseEvent.getScreenX() - x);
+                    stage.setY(mouseEvent.getScreenY() - y);
+                });
+
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(scene);
+                stage.show();
+
+                //Hides the dashboard after the signout option has been chosen
+                dashboardSignoutButton.getScene().getWindow().hide();
+            }else{
+                return;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
