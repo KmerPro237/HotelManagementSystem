@@ -319,6 +319,9 @@ public class DashboardController implements Initializable {
         String newRoomPrice = availableRoomsPriceLabel.getText();
         String newRoomNumber = availableRoomsRoomNumberLabel.getText();
 
+        //String roomID = "select idrooms from rooms where roomNumber = +newRoomNumber+";
+        //preparedStatement = connection.prepareStatement(roomID);
+
         String sqlUpdateQuery = "update rooms set roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"', roomNumber = '"+newRoomNumber+"'";
 
         connection = databaseConnection.findConnection();
@@ -336,6 +339,7 @@ public class DashboardController implements Initializable {
             } else {
 
                 preparedStatement = connection.prepareStatement(sqlUpdateQuery);
+
                 preparedStatement.executeUpdate();
 
                 alert = new Alert(Alert.AlertType.INFORMATION);
@@ -348,6 +352,62 @@ public class DashboardController implements Initializable {
                 availableRoomsClearData();
             }
         } catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Deletes a room from the Database and eventually from the Tableview also
+     */
+    public void availableRoomsDeleteRooms(){
+
+        String newRoomType = (String) availableRoomsRoomTypeComboBox.getSelectionModel().getSelectedItem();
+        String newRoomStatus = (String) availableRoomsRoomStatusComboBox.getSelectionModel().getSelectedItem();
+        String newRoomPrice = availableRoomsPriceLabel.getText();
+        String newRoomNumber = availableRoomsRoomNumberLabel.getText();
+
+        String sqlDeleteQuery = "delete from rooms where roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"', roomNumber = '"+newRoomNumber+"' ";
+
+        connection = databaseConnection.findConnection();
+
+        try{
+
+            Alert alert;
+
+            if(newRoomNumber.isEmpty()||newRoomType.isEmpty()||newRoomStatus.isEmpty()||newRoomPrice.isEmpty()){
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please select the data from the table first");
+                alert.showAndWait();
+            } else {
+
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Do you really want to delete Room #" +newRoomNumber+ " from the Dashboard?");
+
+                Optional <ButtonType> optionalButtonType = alert.showAndWait();
+
+                if(optionalButtonType.get().equals(ButtonType.OK)){
+                    preparedStatement = connection.prepareStatement(sqlDeleteQuery);
+                    preparedStatement.executeUpdate();
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Room#" + newRoomNumber +" successfully deleted!");
+                    alert.showAndWait();
+
+                    availableRoomsShowDataAndPopulateTableView();
+                } else {
+                    return;
+                }
+
+            }
+
+        }catch(Exception e){
             e.printStackTrace();
         }
 
