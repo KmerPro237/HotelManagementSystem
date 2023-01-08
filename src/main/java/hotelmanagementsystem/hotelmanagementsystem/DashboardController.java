@@ -322,7 +322,7 @@ public class DashboardController implements Initializable {
         //String roomID = "select idrooms from rooms where roomNumber = +newRoomNumber+";
         //preparedStatement = connection.prepareStatement(roomID);
 
-        String sqlUpdateQuery = "update rooms set roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"', roomNumber = '"+newRoomNumber+"'";
+        String sqlUpdateQuery = "update rooms set roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"'where roomNumber = '"+newRoomNumber+"'";
 
         connection = databaseConnection.findConnection();
 
@@ -359,6 +359,7 @@ public class DashboardController implements Initializable {
 
     /**
      * Deletes a room from the Database and eventually from the Tableview also
+     * This is achieved by simply using the Room# given it's the primary key
      */
     public void availableRoomsDeleteRooms(){
 
@@ -367,7 +368,8 @@ public class DashboardController implements Initializable {
         String newRoomPrice = availableRoomsPriceLabel.getText();
         String newRoomNumber = availableRoomsRoomNumberLabel.getText();
 
-        String sqlDeleteQuery = "delete from rooms where roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"', roomNumber = '"+newRoomNumber+"' ";
+        String sqlDeleteQuery = "delete from rooms where roomType = '"+newRoomType+"'";
+
 
         connection = databaseConnection.findConnection();
 
