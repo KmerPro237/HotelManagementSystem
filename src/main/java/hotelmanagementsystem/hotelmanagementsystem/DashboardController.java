@@ -491,6 +491,42 @@ public class DashboardController implements Initializable {
         availableRoomsPriceLabel.setText(String.valueOf(roomsData.getRoomPrice()));
     }
 
+    /**
+     * Enables the user to access the check-in window and give information
+     * about customers checking in and out.
+     */
+    public void availableRoomsCheckIn(){
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("CheckIn.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+
+            root.setOnMousePressed((MouseEvent mouseEvent) -> {
+                x = mouseEvent.getSceneX();
+                y = mouseEvent.getSceneY();
+            });
+
+            root.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                stage.setX(mouseEvent.getScreenX() -x);
+                stage.setY(mouseEvent.getScreenY() - y);
+
+                stage.setOpacity(.8);
+            });
+
+            root.setOnMouseReleased((MouseEvent mouseEvent) -> {
+                stage.setOpacity(1);
+            });
+
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Called to initialize a controller after its root element has been completely processed.
