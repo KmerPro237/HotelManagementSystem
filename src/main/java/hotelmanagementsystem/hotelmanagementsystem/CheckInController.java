@@ -50,8 +50,14 @@ public class CheckInController implements Initializable {
     @FXML
     private DatePicker checkoutDate;
 
+    private Utils utils = new Utils();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void closeWindow(){
+        utils.closeWindow();
     }
 }

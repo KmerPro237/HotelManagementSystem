@@ -161,6 +161,10 @@ public class DashboardController implements Initializable {
     private double x = 0;
     private double y = 0;
 
+    //Instantiating the Utils Class
+
+    private Utils utils = new Utils();
+
     /**
      * Adds new rooms to the Database
      * Verifies empty fields and checks duplicate room-entries
@@ -419,7 +423,8 @@ public class DashboardController implements Initializable {
      * Closes the dashboard
      */
     public void closeWindow(){
-        System.exit(0);
+
+        utils.closeWindow();
     }
 
     /**
@@ -446,24 +451,7 @@ public class DashboardController implements Initializable {
 
             if(optionalButtonType.get().equals(ButtonType.OK)) {
 
-                Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
-
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-
-                root.setOnMousePressed((MouseEvent mouseEvent) -> {
-                    x = mouseEvent.getSceneX();
-                    y = mouseEvent.getSceneY();
-                });
-
-                root.setOnMouseDragged((MouseEvent mouseEvent) -> {
-                    stage.setX(mouseEvent.getScreenX() - x);
-                    stage.setY(mouseEvent.getScreenY() - y);
-                });
-
-                stage.initStyle(StageStyle.TRANSPARENT);
-                stage.setScene(scene);
-                stage.show();
+                utils.setStage("loginpage.fxml");
 
                 //Hides the dashboard after the signout option has been chosen
                 dashboardSignoutButton.getScene().getWindow().hide();
@@ -497,30 +485,7 @@ public class DashboardController implements Initializable {
      */
     public void availableRoomsCheckIn(){
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("CheckIn.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-
-            root.setOnMousePressed((MouseEvent mouseEvent) -> {
-                x = mouseEvent.getSceneX();
-                y = mouseEvent.getSceneY();
-            });
-
-            root.setOnMouseDragged((MouseEvent mouseEvent) -> {
-                stage.setX(mouseEvent.getScreenX() -x);
-                stage.setY(mouseEvent.getScreenY() - y);
-
-                stage.setOpacity(.8);
-            });
-
-            root.setOnMouseReleased((MouseEvent mouseEvent) -> {
-                stage.setOpacity(1);
-            });
-
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
-
+            utils.setStage("CheckIn.fxml");
 
         } catch(Exception e){
             e.printStackTrace();
