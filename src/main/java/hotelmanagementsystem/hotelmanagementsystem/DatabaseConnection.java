@@ -11,7 +11,7 @@ public class DatabaseConnection {
     public Connection findConnection(){
         String databaseName = "hotel_management";
         String databaseUser = "root";
-        String databasePassword = "Ruth,1971";
+        String databasePassword = "_"; // insert your password
         String url = "jdbc:mysql://localhost/" + databaseName;
 
         try{
