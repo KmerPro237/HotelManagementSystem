@@ -161,6 +161,10 @@ public class DashboardController implements Initializable {
     private double x = 0;
     private double y = 0;
 
+    //Instantiating the Utils Class
+
+    private Utils utils = new Utils();
+
     /**
      * Adds new rooms to the Database
      * Verifies empty fields and checks duplicate room-entries
@@ -322,7 +326,7 @@ public class DashboardController implements Initializable {
         //String roomID = "select idrooms from rooms where roomNumber = +newRoomNumber+";
         //preparedStatement = connection.prepareStatement(roomID);
 
-        String sqlUpdateQuery = "update rooms set roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"', roomNumber = '"+newRoomNumber+"'";
+        String sqlUpdateQuery = "update rooms set roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"'where roomNumber = '"+newRoomNumber+"'";
 
         connection = databaseConnection.findConnection();
 
@@ -359,6 +363,7 @@ public class DashboardController implements Initializable {
 
     /**
      * Deletes a room from the Database and eventually from the Tableview also
+     * This is achieved by simply using the Room# given it's the primary key
      */
     public void availableRoomsDeleteRooms(){
 
@@ -367,7 +372,8 @@ public class DashboardController implements Initializable {
         String newRoomPrice = availableRoomsPriceLabel.getText();
         String newRoomNumber = availableRoomsRoomNumberLabel.getText();
 
-        String sqlDeleteQuery = "delete from rooms where roomType = '"+newRoomType+"', roomStatus = '"+newRoomStatus+"', roomPrice = '"+newRoomPrice+"', roomNumber = '"+newRoomNumber+"' ";
+        String sqlDeleteQuery = "delete from rooms where roomType = '"+newRoomType+"'";
+
 
         connection = databaseConnection.findConnection();
 
@@ -417,7 +423,8 @@ public class DashboardController implements Initializable {
      * Closes the dashboard
      */
     public void closeWindow(){
-        System.exit(0);
+
+        utils.closeWindow();
     }
 
     /**
@@ -444,24 +451,7 @@ public class DashboardController implements Initializable {
 
             if(optionalButtonType.get().equals(ButtonType.OK)) {
 
-                Parent root = FXMLLoader.load(getClass().getResource("loginpage.fxml"));
-
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-
-                root.setOnMousePressed((MouseEvent mouseEvent) -> {
-                    x = mouseEvent.getSceneX();
-                    y = mouseEvent.getSceneY();
-                });
-
-                root.setOnMouseDragged((MouseEvent mouseEvent) -> {
-                    stage.setX(mouseEvent.getScreenX() - x);
-                    stage.setY(mouseEvent.getScreenY() - y);
-                });
-
-                stage.initStyle(StageStyle.TRANSPARENT);
-                stage.setScene(scene);
-                stage.show();
+                utils.setStage("loginpage.fxml");
 
                 //Hides the dashboard after the signout option has been chosen
                 dashboardSignoutButton.getScene().getWindow().hide();
@@ -487,6 +477,19 @@ public class DashboardController implements Initializable {
 
         availableRoomsRoomNumberLabel.setText(String.valueOf(roomsData.getRoomNumber()));
         availableRoomsPriceLabel.setText(String.valueOf(roomsData.getRoomPrice()));
+    }
+
+    /**
+     * Enables the user to access the check-in window and give information
+     * about customers checking in and out.
+     */
+    public void availableRoomsCheckIn(){
+        try{
+            utils.setStage("CheckIn.fxml");
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 

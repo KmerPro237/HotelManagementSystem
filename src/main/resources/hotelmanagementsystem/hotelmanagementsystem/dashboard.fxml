@@ -193,7 +193,7 @@
                                           <Button fx:id="availableRoomsUpdateButton" layoutX="156.0" layoutY="229.0" mnemonicParsing="false" onAction="#availableRoomsUpdateData" prefHeight="30.0" prefWidth="75.0" styleClass="update-button" stylesheets="@../../DashboardDesign.css" text="Update" />
                                           <Button fx:id="availableRoomsClearButton" layoutX="29.0" layoutY="301.0" mnemonicParsing="false" onAction="#availableRoomsClearData" prefHeight="30.0" prefWidth="75.0" styleClass="clear-button" stylesheets="@../../DashboardDesign.css" text="Clear" />
                                           <Button fx:id="availableRoomsDeleteButton" layoutX="158.0" layoutY="301.0" mnemonicParsing="false" onAction="#availableRoomsDeleteRooms" prefHeight="30.0" prefWidth="75.0" styleClass="delete-button" stylesheets="@../../DashboardDesign.css" text="Delete" />
-                                          <Button fx:id="availableRoomsCheckinButton" layoutX="71.0" layoutY="392.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="checkin-button" stylesheets="@../../DashboardDesign.css" text="Check-in" />
+                                          <Button fx:id="availableRoomsCheckinButton" layoutX="71.0" layoutY="392.0" mnemonicParsing="false" onAction="#availableRoomsCheckIn" prefHeight="35.0" prefWidth="120.0" styleClass="checkin-button" stylesheets="@../../DashboardDesign.css" text="Check-in" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="290.0" layoutY="15.0" prefHeight="518.0" prefWidth="595.0" stylesheets="@../../DashboardDesign.css">

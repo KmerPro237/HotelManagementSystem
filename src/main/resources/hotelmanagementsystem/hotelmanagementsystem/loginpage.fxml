@@ -32,7 +32,7 @@
                   <TextField fx:id="usernameTextfield" layoutX="91.0" layoutY="180.0" prefHeight="30.0" prefWidth="200.0" promptText="Username" styleClass="textfield" stylesheets="@../../loginPageDesign.css" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="59.39999999999998" />
                   <PasswordField fx:id="passwordTextfield" layoutX="91.0" layoutY="227.0" prefHeight="30.0" prefWidth="200.0" promptText="Password" styleClass="textfield" stylesheets="@../../loginPageDesign.css" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="59.39999999999998" />
                   <Button fx:id="loginButton" layoutX="149.0" layoutY="282.0" mnemonicParsing="false" onAction="#validateLogin" prefHeight="40.0" prefWidth="83.0" styleClass="login-btn" stylesheets="@../../loginPageDesign.css" text="Login" />
-                  <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="10.0" minWidth="37.0" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="45.0" styleClass="close" stylesheets="@../../loginPageDesign.css" text="X" textAlignment="CENTER">
+                  <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="10.0" minWidth="37.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0" prefWidth="45.0" styleClass="close" stylesheets="@../../loginPageDesign.css" text="X" textAlignment="CENTER">
                      <font>
                         <Font name="Verdana Bold" size="10.0" />
                      </font>
