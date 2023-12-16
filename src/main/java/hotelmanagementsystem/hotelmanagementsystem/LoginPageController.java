@@ -45,7 +45,8 @@ public class LoginPageController {
     private double x = 0;
     private double y = 0;
 
-    public void exit(){
+    public void closeWindow(){
+
         System.exit(0);
     }
 
@@ -87,25 +88,9 @@ public class LoginPageController {
                     //loginButton.getScene().getWindow().hide();  -----> Should normally hide the login Button if the given data is correct
 
                     //If login is successful, open the dashboard
-                    Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
 
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-
-                    root.setOnMousePressed((MouseEvent mouseEvent) ->{
-                        x = mouseEvent.getSceneX();
-                        y = mouseEvent.getSceneY();
-                    });
-
-                    root.setOnMouseDragged((MouseEvent mouseEvent) ->{
-                        stage.setX(mouseEvent.getScreenX() - x);
-                        stage.setY(mouseEvent.getScreenY() - y);
-                    });
-
-                    stage.initStyle(StageStyle.TRANSPARENT);
-
-                    stage.setScene(scene);
-                    stage.show();
+                    Utils utils = new Utils();
+                    utils.setStage("dashboard.fxml");
 
                 } else {
                     alert = new Alert(Alert.AlertType.ERROR);
