@@ -21,12 +21,12 @@ public class HotelManagementSystem extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //FXMLLoader fxmlLoader = new FXMLLoader(HotelManagementSystem.class.getResource("loginpage.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load(), 750, 500);
+        //Scene scene = new Scene(fxmlLoa○der.load(), 750, 500);
 
         //scene.getStylesheets().add(getClass().getResource("@loginDesign.css").toString());
 
         //Trying the effects of the Parent class and comparing its functionalities
-        //with those of the FXMLLoader-Class
+        //with those of the FXMLLoader-Classs
 
         utils.setStage("loginpage.fxml");
     }

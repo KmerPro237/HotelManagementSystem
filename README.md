@@ -6,7 +6,9 @@ Some functionalities on the class diagrams might not be fully implemented as ini
 
 The project is however still in a development phase.
 
-## UML Diagrams
+## UML 
+
+![img_1.png](img_1.png)
 
 ### UML Class Diagram
 
@@ -16,3 +18,11 @@ The project is however still in a development phase.
 
 ![UML Stereotypes Hotel-System (1)](https://github.com/KmerPro237/HotelManagementSystem/assets/118595893/e79d769f-0ebf-4fa2-b99b-58628b524b2a)
 
+
+### Next Development Steps
+- Development a billing and platform monitoring interface for the administrator.
+- Development a billing system producing customized bills. 
+
+![img.png](img.png)
+ 
+- Resolve login issue. 

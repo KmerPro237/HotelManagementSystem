@@ -29,8 +29,8 @@ public class JDBCDrivers {
 
     }
 
-    public static void main(String[] args) {
-        JDBCDrivers.printDrivers();
-    }
+
+
+    public static void main(String[] args) {JDBCDrivers.printDrivers();}
 
 }
